@@ -3087,6 +3087,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 245888290834049713, guid: ca48428c5384d0948b64b463063736e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 245888290868614405, guid: ca48428c5384d0948b64b463063736e1,
         type: 3}
       propertyPath: m_Layer
@@ -3155,7 +3160,7 @@ PrefabInstance:
     - target: {fileID: 245888291880447161, guid: ca48428c5384d0948b64b463063736e1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9000265790201277375, guid: ca48428c5384d0948b64b463063736e1,
         type: 3}

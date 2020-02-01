@@ -10,6 +10,8 @@ public class SplashController : MonoBehaviour
     void Start()
     {
         StartCoroutine(StartSplash());
+        cvGgjLogo.SetActive(false);
+        cvGameLogo.SetActive(true);
     }
 
     private IEnumerator StartSplash()
