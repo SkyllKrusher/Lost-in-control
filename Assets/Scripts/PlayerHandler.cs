@@ -47,7 +47,8 @@ public class PlayerHandler : MonoBehaviour
     public void MoveLeft()
     {
         PlaySoundEffect(0);
-        SetAnimations(false, true, false);
+        // SetAnimations(false, true, false);
+        playerAnim.SetTrigger("run");
         direction = new Vector2(-angle.localPosition.x, angle.localPosition.y);
         Debug.Log("MoveLeft");
         transform.localScale = new Vector2(-localScaleX, transform.localScale.y);
@@ -57,7 +58,8 @@ public class PlayerHandler : MonoBehaviour
     public void MoveRight()
     {
         PlaySoundEffect(0);
-        SetAnimations(false, true, false);
+        // SetAnimations(false, true, false);
+        playerAnim.SetTrigger("run");
         direction = angle.localPosition;
         Debug.Log("MoveRight");
         transform.localScale = new Vector2(localScaleX, transform.localScale.y);
@@ -66,8 +68,8 @@ public class PlayerHandler : MonoBehaviour
     public void IdlePlayer()
     {
         audioSource.Stop();
-        playerAnim.SetBool("isRunning", false);
-        playerAnim.SetBool("isIdle", true);
+        playerAnim.SetTrigger("idle");
+        // playerAnim.SetBool("isIdle", true);
         Debug.Log("Idle");
         speed = 0;
     }
@@ -76,11 +78,12 @@ public class PlayerHandler : MonoBehaviour
     {
         if (isGrounded)
         {
+            isGrounded = false;
             PlaySoundEffect(1);
-            playerAnim.SetBool("isJumping", true);
+            playerAnim.SetTrigger("jump");
             Debug.Log("Jump");
             GetComponent<Rigidbody2D>().AddForce(direction * playerJumpForce);
-            Invoke("SetToIdle", 0.750f); // 0.750 = length of animation 
+            // Invoke("SetToIdle", 0.750f); // 0.750 = length of animation
         }
     }
 
@@ -88,12 +91,5 @@ public class PlayerHandler : MonoBehaviour
     {
         audioSource.clip = AudioManager.Instance.soundClips[soundIndex];
         audioSource.Play();
-    }
-
-    public void SetAnimations(bool isIdle, bool isRunning, bool isJumping)
-    {
-        playerAnim.SetBool("isIdle", isIdle);
-        playerAnim.SetBool("isRunning", isRunning);
-        playerAnim.SetBool("isJumping", isJumping);
     }
 }
