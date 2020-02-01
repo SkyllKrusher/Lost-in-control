@@ -10,15 +10,17 @@ public class DisappearingPlatform : MonoBehaviour
     [SerializeField] private float disappearDelayTime = 2f;
     [SerializeField] private float reappearDelayTime = 2f;
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        HandleCollision(col);
+        HandleTrigger(col);
     }
 
-    private void HandleCollision(Collision2D col)
+    private void HandleTrigger(Collider2D col)
     {
+        Debug.Log("Trigger Enter");
         if (col.gameObject.tag == "Player")
         {
+            Debug.Log("Player Trigger Enter");
             StartCoroutine(DisappearAndReapperPlatform(disappearDelayTime));
         }
     }
