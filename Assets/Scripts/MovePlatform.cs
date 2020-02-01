@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovePlatform : MonoBehaviour
 {
-    [SerializeField] private GameObject platform;
+    [SerializeField] private Transform platform;
     [SerializeField] private Transform startTransform;
     [Space]
     [SerializeField] private float moveSpeed = 1f;
@@ -12,21 +12,20 @@ public class MovePlatform : MonoBehaviour
     [Space]
     [SerializeField] private bool isMoveX = true;
     [SerializeField] private bool isMoveY = false;
-    // [SerializeField] private Transform positionB;
 
     void Start()
     {
-        startTransform.position = platform.transform.position;
+        startTransform.position = platform.position;
     }
 
     void Update()
     {
         OscillatePlatform();
     }
+
     private void OscillatePlatform()
     {
         float newPosition = -Mathf.Sin(Time.time * moveSpeed) * moveRange;
-        platform.transform.position = startTransform.position + new Vector3(newPosition * (isMoveX ? 1 : 0), newPosition * (isMoveY ? 1 : 0), 0.0f);
+        platform.position = startTransform.position + new Vector3(newPosition * (isMoveX ? 1 : 0), newPosition * (isMoveY ? 1 : 0), 0.0f);
     }
-
 }
