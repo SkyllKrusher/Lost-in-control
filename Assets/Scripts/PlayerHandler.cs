@@ -10,6 +10,7 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform angle;
     [SerializeField] private LayerMask groundLayer;
+    private AudioSource audioSource = null;
     private Animator playerAnim;
     private float speed = 0;
     private float localScaleX;
@@ -20,6 +21,7 @@ public class PlayerHandler : MonoBehaviour
         direction = angle.localPosition;
         localScaleX = transform.localScale.x;
         playerAnim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     void FixedUpdate()
     {
@@ -38,9 +40,8 @@ public class PlayerHandler : MonoBehaviour
 
     public void MoveLeft()
     {
-        playerAnim.SetBool("isJumping", false);
-        playerAnim.SetBool("isRunning", true);
-        playerAnim.SetBool("isIdle", false);
+        PlaySoundEffect(0);
+        SetAnimations(false, true, false);
         direction = new Vector2(-angle.localPosition.x, angle.localPosition.y);
         Debug.Log("MoveLeft");
         transform.localScale = new Vector2(-localScaleX, transform.localScale.y);
@@ -49,9 +50,8 @@ public class PlayerHandler : MonoBehaviour
 
     public void MoveRight()
     {
-        playerAnim.SetBool("isJumping", false);
-        playerAnim.SetBool("isRunning", true);
-        playerAnim.SetBool("isIdle", false);
+        PlaySoundEffect(0);
+        SetAnimations(false, true, false);
         direction = angle.localPosition;
         Debug.Log("MoveRight");
         transform.localScale = new Vector2(localScaleX, transform.localScale.y);
@@ -59,6 +59,7 @@ public class PlayerHandler : MonoBehaviour
     }
     public void IdlePlayer()
     {
+        audioSource.Stop();
         playerAnim.SetBool("isRunning", false);
         playerAnim.SetBool("isIdle", true);
         Debug.Log("Idle");
@@ -69,9 +70,23 @@ public class PlayerHandler : MonoBehaviour
     {
         if (isGrounded)
         {
+            PlaySoundEffect(1);
             playerAnim.SetBool("isJumping", true);
             GetComponent<Rigidbody2D>().AddForce(direction * playerJumpForce);
             Debug.Log("Jump");
         }
+    }
+
+    public void PlaySoundEffect(int soundIndex)
+    {
+        audioSource.clip = AudioManager.Instance.soundClips[soundIndex];
+        audioSource.Play();
+    }
+
+    public void SetAnimations(bool isIdle, bool isRunning, bool isJumping)
+    {
+        playerAnim.SetBool("isIdle", isIdle);
+        playerAnim.SetBool("isRunning", isRunning);
+        playerAnim.SetBool("isJumping", isJumping);
     }
 }
