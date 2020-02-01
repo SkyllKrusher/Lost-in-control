@@ -11,6 +11,7 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform angle;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private GameObject playerProjectile = null;
 
     private AudioSource audioSource = null;
     private Animator playerAnim;
@@ -28,6 +29,7 @@ public class PlayerHandler : MonoBehaviour
         localScaleX = transform.localScale.x;
         playerAnim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        //StartPlayerBounce();
     }
 
     void FixedUpdate()
@@ -137,5 +139,28 @@ public class PlayerHandler : MonoBehaviour
     {
         canPlayerMove = true;
     }
+
+    public void StartPlayerBounce(Transform endTransform)
+    {
+        PlayerBounce(endTransform);
+    }
+
+    public void PlayerBounce(Transform endTransform)
+    {
+        Debug.LogError("Starting Player Bounce!");
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        playerProjectile.transform.parent = transform.parent;
+        playerProjectile.GetComponent<Projectile>().targetTransform = endTransform;
+        playerProjectile.SetActive(true);
+    }
+
+    public void PlayerBounceComplete(Vector2 endPosition)
+    {
+        Debug.LogError("Player bounce complete!");
+        playerProjectile.SetActive(false);
+        this.gameObject.transform.position = endPosition;
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+    }
+
     #endregion --------------------------------------------
 }
