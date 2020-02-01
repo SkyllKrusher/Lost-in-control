@@ -38,18 +38,10 @@ public class PlayerHandler : MonoBehaviour
         transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
     }
 
-    private bool IsAnimPlaying()
+    private void SetToIdle()
     {
-        if (playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !playerAnim.IsInTransition(0))
-        {
-            Debug.LogError("Animation finished..!");
-            return true;
-        }
-        else
-        {
-            Debug.LogError("Animation playing..");
-            return false;
-        }
+        playerAnim.SetBool("isJumping", false);
+        playerAnim.SetBool("isIdle", true);
     }
 
     public void MoveLeft()
@@ -92,7 +84,6 @@ public class PlayerHandler : MonoBehaviour
         }
     }
 
-<<<<<<< Updated upstream
     public void PlaySoundEffect(int soundIndex)
     {
         audioSource.clip = AudioManager.Instance.soundClips[soundIndex];
@@ -104,11 +95,5 @@ public class PlayerHandler : MonoBehaviour
         playerAnim.SetBool("isIdle", isIdle);
         playerAnim.SetBool("isRunning", isRunning);
         playerAnim.SetBool("isJumping", isJumping);
-=======
-    private void SetToIdle()
-    {
-        playerAnim.SetBool("isJumping", false);
-        playerAnim.SetBool("isIdle", true);
->>>>>>> Stashed changes
     }
 }
