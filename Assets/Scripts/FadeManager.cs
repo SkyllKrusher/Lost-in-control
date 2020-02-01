@@ -14,11 +14,11 @@ public class FadeManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(this);
+        myCanvasGroup = this.GetComponent<CanvasGroup>();
     }
 
     void Start()
     {
-        myCanvasGroup = this.GetComponent<CanvasGroup>();
     }
 
     public IEnumerator BlackOut()
@@ -35,7 +35,7 @@ public class FadeManager : MonoBehaviour
     public IEnumerator BrightUp()
     {
         float colourValue = 0f;
-        float rate = 0.1f;
+        float rate = 0.01f;
         while (myCanvasGroup.alpha > colourValue)
         {
             myCanvasGroup.alpha -= rate;
