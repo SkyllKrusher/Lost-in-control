@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource BgMusic;
     void Awake()
     {
-        if (AudioManager.Instance != null)
+        if (Instance != null)
         {
             Destroy(this);
         }
