@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class PlayerHandler : MonoBehaviour
 {
+    [SerializeField] private GameView gameView;
     [SerializeField] private float playerSpeed = 10f;
     [SerializeField] private float playerJumpForce = 10f;
     [SerializeField] private Transform playerJumpAngle;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform angle;
     [SerializeField] private LayerMask groundLayer;
+
     private AudioSource audioSource = null;
     private Animator playerAnim;
     private float speed = 0;
     private float localScaleX;
     private bool isGrounded = false;
     private Vector3 direction;
+    private bool firstControlHit = false;
+
+    private bool canPlayerMove = true;
+
     void Start()
     {
         direction = angle.localPosition;
@@ -23,9 +29,9 @@ public class PlayerHandler : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
+
     void FixedUpdate()
     {
-        //Debug.Log("Player is grounded : " + isGrounded);
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.15f, groundLayer);
         if (isGrounded)
         {
@@ -33,38 +39,16 @@ public class PlayerHandler : MonoBehaviour
         }
     }
 
-    private void Move()
+    private void CheckFTUE()
     {
-        transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
+        if (!firstControlHit)
+        {
+            gameView.StopControlAnimation();
+            firstControlHit = true;
+            Invoke("StopPlayerMovement", 1f);
+        }
     }
-
-    private void SetToIdle()
-    {
-        playerAnim.SetBool("isJumping", false);
-        playerAnim.SetBool("isIdle", true);
-    }
-
-    public void MoveLeft()
-    {
-        PlaySoundEffect(0);
-        // SetAnimations(false, true, false);
-        playerAnim.SetTrigger("run");
-        direction = new Vector2(-angle.localPosition.x, angle.localPosition.y);
-        Debug.Log("MoveLeft");
-        transform.localScale = new Vector2(-localScaleX, transform.localScale.y);
-        speed = -playerSpeed;
-    }
-
-    public void MoveRight()
-    {
-        PlaySoundEffect(0);
-        // SetAnimations(false, true, false);
-        playerAnim.SetTrigger("run");
-        direction = angle.localPosition;
-        Debug.Log("MoveRight");
-        transform.localScale = new Vector2(localScaleX, transform.localScale.y);
-        speed = playerSpeed;
-    }
+    #region ---------------- Public Methods ----------------------
     public void IdlePlayer()
     {
         audioSource.Stop();
@@ -74,16 +58,65 @@ public class PlayerHandler : MonoBehaviour
         speed = 0;
     }
 
+    private void Move()
+    {
+        if (canPlayerMove)
+        {
+            transform.position = new Vector2(
+                transform.position.x + speed * Time.deltaTime,
+                transform.position.y
+            );
+        }
+    }
+
+    public void MoveLeft()
+    {
+        if (canPlayerMove)
+        {
+            CheckFTUE();
+
+            PlaySoundEffect(0);
+            // SetAnimations(false, true, false);
+            playerAnim.SetTrigger("run");
+            direction = new Vector2(-angle.localPosition.x, angle.localPosition.y);
+            Debug.Log("MoveLeft");
+            transform.localScale = new Vector2(-localScaleX, transform.localScale.y);
+            speed = -playerSpeed;
+        }
+    }
+
+    public void MoveRight()
+    {
+        if (canPlayerMove)
+        {
+            CheckFTUE();
+
+            PlaySoundEffect(0);
+            // SetAnimations(false, true, false);
+            playerAnim.SetTrigger("run");
+            direction = angle.localPosition;
+            Debug.Log("MoveRight");
+            transform.localScale = new Vector2(localScaleX, transform.localScale.y);
+            speed = playerSpeed;
+        }
+    }
+
+
     public void Jump()
     {
-        if (isGrounded)
+        if (canPlayerMove)
         {
-            isGrounded = false;
-            PlaySoundEffect(1);
-            playerAnim.SetTrigger("jump");
-            Debug.Log("Jump");
-            GetComponent<Rigidbody2D>().AddForce(direction * playerJumpForce);
-            // Invoke("SetToIdle", 0.750f); // 0.750 = length of animation
+            CheckFTUE();
+
+            if (isGrounded)
+            {
+                isGrounded = false;
+                PlaySoundEffect(1);
+                playerAnim.SetTrigger("jump");
+                Debug.Log("Jump");
+                GetComponent<Rigidbody2D>().AddForce(direction * playerJumpForce);
+                // Invoke("SetToIdle", 0.750f); // 0.750 = length of animation
+            }
         }
     }
 
@@ -92,4 +125,15 @@ public class PlayerHandler : MonoBehaviour
         audioSource.clip = AudioManager.Instance.soundClips[soundIndex];
         audioSource.Play();
     }
+
+    public void StopPlayerMovement()
+    {
+        canPlayerMove = false;
+    }
+
+    public void StartPlayerMovement()
+    {
+        canPlayerMove = true;
+    }
+    #endregion --------------------------------------------
 }
