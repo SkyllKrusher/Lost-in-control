@@ -130,7 +130,7 @@ public class PlayerHandler : MonoBehaviour
     {
         Debug.LogWarning("start playing girl intro");
         canPlayerMove = false;
-        gameView.StartGirlIntroAnimation();
+        StartCoroutine(gameView.StartGirlIntroAnimation());
     }
 
     public void StartPlayerMovement()

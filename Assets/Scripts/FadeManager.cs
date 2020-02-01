@@ -5,6 +5,7 @@ using UnityEngine;
 public class FadeManager : MonoBehaviour
 {
     public static FadeManager Instance;
+    private CanvasGroup myCanvasGroup;
     void Awake()
     {
         if (Instance != null)
@@ -14,22 +15,30 @@ public class FadeManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this);
     }
-    public IEnumerator BlackOut(CanvasGroup canvasGroup, float rate)
+
+    void Start()
+    {
+        myCanvasGroup = this.GetComponent<CanvasGroup>();
+    }
+
+    public IEnumerator BlackOut()
     {
         float colourValue = 1f;
-        while (canvasGroup.alpha < colourValue)
+        float rate = 0.01f;
+        while (myCanvasGroup.alpha < colourValue)
         {
-            canvasGroup.alpha += rate;
+            myCanvasGroup.alpha += rate;
             yield return new WaitForEndOfFrame();
         }
     }
 
-    public IEnumerator BrightUp(CanvasGroup canvasGroup, float rate)
+    public IEnumerator BrightUp()
     {
         float colourValue = 0f;
-        while (canvasGroup.alpha > colourValue)
+        float rate = 0.1f;
+        while (myCanvasGroup.alpha > colourValue)
         {
-            canvasGroup.alpha -= rate;
+            myCanvasGroup.alpha -= rate;
             yield return new WaitForEndOfFrame();
         }
     }
