@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class GameView : MonoBehaviour
 {
+    [SerializeField] private PlayerHandler playerHandler;
     [SerializeField] private Animator playerControl;
     [SerializeField] private Animator girlIntroAnimationControl;
     [SerializeField] private Material grayscaleMat;
 
     [SerializeField] private GameObject[] levels;
+
+    private void Start()
+    {
+        grayscaleMat.SetFloat("_EffectAmount", 0);
+        levels[0].SetActive(true);
+    }
 
     public void StopControlAnimation()
     {
@@ -26,7 +33,10 @@ public class GameView : MonoBehaviour
         Debug.Log("Load level now");
         levels[0].SetActive(false);
         levels[1].SetActive(true);
+        CustomGameManager.Instance.currentLevel += 1;
         yield return StartCoroutine(FadeManager.Instance.BrightUp());
+        playerHandler.StartPlayerMovement();
+
     }
 
     public void DoCamerashake()
@@ -54,7 +64,7 @@ public class GameView : MonoBehaviour
         }
 
         yield return StartCoroutine(FadeManager.Instance.BlackOut());
-
+        grayscaleMat.SetFloat("_EffectAmount", 0);
         Debug.Log("Do grayscale finished");
     }
 }

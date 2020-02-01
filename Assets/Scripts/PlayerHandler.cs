@@ -106,6 +106,8 @@ public class PlayerHandler : MonoBehaviour
 
     public void Jump()
     {
+        Debug.Log("Jump");
+
         if (canPlayerMove)
         {
             CheckFTUE();
