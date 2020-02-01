@@ -128,7 +128,9 @@ public class PlayerHandler : MonoBehaviour
 
     public void StopPlayerMovement()
     {
+        Debug.LogWarning("start playing girl intro");
         canPlayerMove = false;
+        gameView.StartGirlIntroAnimation();
     }
 
     public void StartPlayerMovement()
