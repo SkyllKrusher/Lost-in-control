@@ -10,6 +10,7 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform angle;
     [SerializeField] private LayerMask groundLayer;
+    private Animator playerAnim;
     private float speed = 0;
     private float localScaleX;
     private bool isGrounded = false;
@@ -18,9 +19,11 @@ public class PlayerHandler : MonoBehaviour
     {
         direction = angle.localPosition;
         localScaleX = transform.localScale.x;
+        playerAnim = GetComponent<Animator>();
     }
     void FixedUpdate()
     {
+        Debug.Log(isGrounded);
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.15f, groundLayer);
         if (isGrounded)
         {
@@ -35,6 +38,9 @@ public class PlayerHandler : MonoBehaviour
 
     public void MoveLeft()
     {
+        playerAnim.SetBool("isJumping", false);
+        playerAnim.SetBool("isRunning", true);
+        playerAnim.SetBool("isIdle", false);
         direction = new Vector2(-angle.localPosition.x, angle.localPosition.y);
         Debug.Log("MoveLeft");
         transform.localScale = new Vector2(-localScaleX, transform.localScale.y);
@@ -43,6 +49,9 @@ public class PlayerHandler : MonoBehaviour
 
     public void MoveRight()
     {
+        playerAnim.SetBool("isJumping", false);
+        playerAnim.SetBool("isRunning", true);
+        playerAnim.SetBool("isIdle", false);
         direction = angle.localPosition;
         Debug.Log("MoveRight");
         transform.localScale = new Vector2(localScaleX, transform.localScale.y);
@@ -50,6 +59,8 @@ public class PlayerHandler : MonoBehaviour
     }
     public void IdlePlayer()
     {
+        playerAnim.SetBool("isRunning", false);
+        playerAnim.SetBool("isIdle", true);
         Debug.Log("Idle");
         speed = 0;
     }
@@ -58,6 +69,7 @@ public class PlayerHandler : MonoBehaviour
     {
         if (isGrounded)
         {
+            playerAnim.SetBool("isJumping", true);
             GetComponent<Rigidbody2D>().AddForce(direction * playerJumpForce);
             Debug.Log("Jump");
         }
