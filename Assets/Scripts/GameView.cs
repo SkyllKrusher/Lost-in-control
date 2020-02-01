@@ -15,6 +15,7 @@ public class GameView : MonoBehaviour
     {
         grayscaleMat.SetFloat("_EffectAmount", 0);
         levels[0].SetActive(true);
+        levels[1].SetActive(false);
     }
 
     public void StopControlAnimation()
