@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class GameView : MonoBehaviour
     [SerializeField] private Animator playerControl;
     [SerializeField] private Animator girlIntroAnimationControl;
     [SerializeField] private Material grayscaleMat;
-
+    [SerializeField] private GameObject thankYouPanel;
     [SerializeField] private GameObject[] levels;
     [SerializeField] private List<Transform> levelStartingPositions;
     [SerializeField] private List<GameObject> levelKeys;
@@ -55,6 +56,14 @@ public class GameView : MonoBehaviour
         Debug.Log("Starting level trans effect = " + currentLevel + " " + newLevel + " " + isReload);
         StartCoroutine(StartLevelTransition(currentLevel, newLevel, isReload));
     }
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void ShowThankyouPanel()
+    {
+        thankYouPanel.SetActive(true);
+    }
 
     public IEnumerator StartLevelTransition(int currentLevel, int newLevel, bool isReload = false)
     {
@@ -99,6 +108,7 @@ public class GameView : MonoBehaviour
         if (newLevel == 4)
         {
             playerHandler.canPlayerMove = false;
+            Invoke("ShowThankyouPanel", 13f);
         }
 
         if (!isReloadingLevel && newLevel != 0)
