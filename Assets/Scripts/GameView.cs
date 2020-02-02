@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameView : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class GameView : MonoBehaviour
     [SerializeField] private GameObject[] levels;
     [SerializeField] private List<Transform> levelStartingPositions;
     [SerializeField] private GameObject ghostGirl;
+    [SerializeField] private Button reloadButton;
+
+    private void OnEnable()
+    {
+        reloadButton.onClick.AddListener(() => ReloadLevel());
+    }
 
     private void Start()
     {
@@ -33,7 +40,7 @@ public class GameView : MonoBehaviour
         yield return new WaitForSeconds(4);
         yield return StartCoroutine(DoGrayScale());
         Debug.Log("Load level now");
-        TransitionLevel(0, 2);
+        TransitionLevel(0, 1);
         yield return StartCoroutine(FadeManager.Instance.BrightUp());
         playerHandler.StartPlayerMovement();
 
@@ -42,22 +49,93 @@ public class GameView : MonoBehaviour
     public void TransitionLevel(int currentLevel, int newLevel, bool isReloadingLevel = false)
     {
         playerHandler.gameObject.transform.parent = null;
-        CustomGameManager.Instance.playerHasKey = false;
-        Debug.LogError("Current level " + currentLevel + "New Level " + newLevel);
+
+        //Debug.LogError("Current level " + currentLevel + "New Level " + newLevel);
         SetPlayerStartingPos(newLevel);
         levels[currentLevel].SetActive(false);
         levels[newLevel].SetActive(true);
         CustomGameManager.Instance.currentLevel = newLevel;
+        SetButtonsStatus();
+
+        if (newLevel != 0)
+        {
+            reloadButton.interactable = true;
+        }
+        else if (newLevel == 0)
+        {
+            reloadButton.interactable = false;
+        }
 
         if (!isReloadingLevel && newLevel != 0)
         {
+            CustomGameManager.Instance.playerHasKey = false;
             Invoke("PlayGhostAnim", 1f);
+        }
+
+    }
+
+    public void ReloadLevel()
+    {
+        int currentLevel = CustomGameManager.Instance.currentLevel;
+        if (currentLevel != 0)
+        {
+            TransitionLevel(CustomGameManager.Instance.currentLevel, CustomGameManager.Instance.currentLevel, true);
+        }
+    }
+
+    public void SetButtonsStatus()
+    {
+        //Debug.LogError("Showing btn status..." + CustomGameManager.Instance.currentLevel);
+        switch (CustomGameManager.Instance.currentLevel)
+        {
+            case (0):
+                {
+                    // do nothing
+                    //Debug.LogError("Case 0 !");
+                    break;
+                }
+
+            case (1):
+                {
+                    //Debug.LogError("Stting for lvl 1 btn status...");
+                    CustomGameManager.Instance.isLeftBroken = true;
+                    CustomGameManager.Instance.isRightBroken = true;
+                    CustomGameManager.Instance.isJumpBroken = false;
+                    CustomGameManager.Instance.ChangeButtonSprite(true, 0);
+                    CustomGameManager.Instance.ChangeButtonSprite(true, 1);
+                    CustomGameManager.Instance.ChangeButtonSprite(false, 2);
+                    break;
+                }
+
+            case (2):
+                {
+                    //Debug.LogError("Stting for lvl 1 btn status...");
+                    CustomGameManager.Instance.isLeftBroken = true;
+                    CustomGameManager.Instance.isRightBroken = false;
+                    CustomGameManager.Instance.isJumpBroken = false;
+                    CustomGameManager.Instance.ChangeButtonSprite(true, 0);
+                    CustomGameManager.Instance.ChangeButtonSprite(false, 1);
+                    CustomGameManager.Instance.ChangeButtonSprite(false, 2);
+                    break;
+                }
+
+            case (3):
+                {
+                    // TODO
+                    break;
+                }
+
+            default:
+                {
+                    // do nothing
+                    break;
+                }
         }
     }
 
     private void PlayGhostAnim()
     {
-        Debug.LogError("Playing ghost girl anim.");
+        //Debug.LogError("Playing ghost girl anim.");
         ghostGirl.GetComponent<Animator>().SetTrigger("Level" + CustomGameManager.Instance.currentLevel.ToString());
     }
 

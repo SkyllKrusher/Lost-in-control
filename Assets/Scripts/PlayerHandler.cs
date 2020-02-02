@@ -36,7 +36,7 @@ public class PlayerHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Debug.LogError("Resetting Level!");
+            //Debug.LogError("Resetting Level!");
             int currentLevel = CustomGameManager.Instance.currentLevel;
             if (currentLevel != 0)
             {
@@ -162,7 +162,7 @@ public class PlayerHandler : MonoBehaviour
 
     public void PlayerBounce(Transform endTransform)
     {
-        Debug.LogError("Starting Player Bounce!");
+        //Debug.LogError("Starting Player Bounce!");
         this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         playerProjectile.transform.parent = transform.parent;
         playerProjectile.GetComponent<Projectile>().targetTransform = endTransform;
@@ -171,7 +171,7 @@ public class PlayerHandler : MonoBehaviour
 
     public void PlayerBounceComplete(Vector2 endPosition)
     {
-        Debug.LogError("Player bounce complete!");
+        //Debug.LogError("Player bounce complete!");
         playerProjectile.SetActive(false);
         this.gameObject.transform.position = endPosition;
         playerProjectile.transform.parent = transform;

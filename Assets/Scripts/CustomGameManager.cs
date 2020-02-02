@@ -35,6 +35,7 @@ public class CustomGameManager : MonoBehaviour
     }
     public void ChangeButtonSprite(bool doDestroy, int btnIndex)
     {
+        // 0 = Left, 1 = Right, 2 = Jump
         if (doDestroy)
         {
             Buttons[btnIndex].GetComponent<Image>().sprite = btnDestroy;

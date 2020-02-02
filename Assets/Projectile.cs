@@ -56,7 +56,7 @@ public class Projectile : MonoBehaviour
 
     void Arrived()
     {
-        Debug.LogError("TADA! Arrived!");
+        //Debug.LogError("TADA! Arrived!");
         player.PlayerBounceComplete(targetTransform.position);
         //Destroy(gameObject);
     }
