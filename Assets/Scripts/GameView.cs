@@ -54,17 +54,14 @@ public class GameView : MonoBehaviour
     {
         if (!isReload)
         {
-            Debug.Log("GRayscaling...");
             yield return StartCoroutine(DoGrayScale());
         }
 
-        Debug.Log("Load level now");
         Debug.Log("Old level = " + currentLevel + "New = " + newLevel);
         TransitionLevel(currentLevel, newLevel, isReload);
 
         if (!isReload)
         {
-            Debug.Log("Brighting up screen");
             yield return StartCoroutine(FadeManager.Instance.BrightUp());
         }
     }
@@ -73,8 +70,9 @@ public class GameView : MonoBehaviour
     {
         playerHandler.gameObject.transform.parent = null;
 
-        //Debug.LogError("Current level " + currentLevel + "New Level " + newLevel);
+        Debug.LogError("Current level " + currentLevel + "New Level " + newLevel);
         SetPlayerStartingPos(newLevel);
+        playerHandler.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         levels[currentLevel].SetActive(false);
         levels[newLevel].SetActive(true);
         CustomGameManager.Instance.currentLevel = newLevel;

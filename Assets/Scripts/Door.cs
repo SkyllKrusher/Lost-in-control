@@ -17,6 +17,7 @@ public class Door : MonoBehaviour
         {
             if (CustomGameManager.Instance.playerHasKey == true)
             {
+                other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 OpenDoor();
             }
         }
@@ -25,6 +26,8 @@ public class Door : MonoBehaviour
     private void OpenDoor()
     {
         int currentLevel = CustomGameManager.Instance.currentLevel;
-        gameView.DoLevelTransition(currentLevel, currentLevel + 1, false);
+        Debug.LogError("Current level = " + currentLevel + "Next level = " + (currentLevel + 1));
+        StartCoroutine(gameView.StartLevelTransition(currentLevel, currentLevel + 1, false));
+        //gameView.DoLevelTransition(currentLevel, currentLevel + 1, false);
     }
 }
