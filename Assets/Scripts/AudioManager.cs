@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] soundClips;
     public AudioClip[] bgMusic;
     public AudioSource BgMusic;
+    public AudioSource soundEffects;
     void Awake()
     {
         if (Instance != null)
@@ -32,6 +33,17 @@ public class AudioManager : MonoBehaviour
     {
         BgMusic.clip = bgMusic[1];
         BgMusic.Play();
+    }
+
+    public void PlayEarthQuakeSound()
+    {
+        soundEffects.clip = bgMusic[3];
+        soundEffects.Play();
+    }
+    public void PlayButtonRecoverSound()
+    {
+        soundEffects.clip = bgMusic[4];
+        soundEffects.Play();
     }
 
 }

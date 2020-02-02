@@ -37,6 +37,7 @@ public class Key : MonoBehaviour
         {
             case (0):
                 {
+                    AudioManager.Instance.PlayButtonRecoverSound();
                     // do nothing
                     //Debug.LogError("Case 0 !");
                     break;
@@ -44,6 +45,7 @@ public class Key : MonoBehaviour
 
             case (1):
                 {
+                    AudioManager.Instance.PlayButtonRecoverSound();
                     //Debug.LogError("Stting for lvl 1 btn status...");
                     CustomGameManager.Instance.isLeftBroken = true;
                     CustomGameManager.Instance.isRightBroken = false;
@@ -56,6 +58,7 @@ public class Key : MonoBehaviour
 
             case (2):
                 {
+                    AudioManager.Instance.PlayButtonRecoverSound();
                     //Debug.LogError("Stting for lvl 1 btn status...");
                     CustomGameManager.Instance.isLeftBroken = false;
                     CustomGameManager.Instance.isRightBroken = false;
