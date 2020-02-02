@@ -12,6 +12,7 @@ public class GameView : MonoBehaviour
 
     [SerializeField] private GameObject[] levels;
     [SerializeField] private List<Transform> levelStartingPositions;
+    [SerializeField] private List<GameObject> levelKeys;
     [SerializeField] private GameObject ghostGirl;
     [SerializeField] private Button reloadButton;
 
@@ -38,12 +39,33 @@ public class GameView : MonoBehaviour
         yield return new WaitForSeconds(2);
         DoCamerashake();
         yield return new WaitForSeconds(4);
-        yield return StartCoroutine(DoGrayScale());
-        Debug.Log("Load level now");
-        TransitionLevel(0, 1);
-        yield return StartCoroutine(FadeManager.Instance.BrightUp());
+        DoLevelTransition(0, 1);
+        // yield return StartCoroutine(DoGrayScale());
+        // Debug.Log("Load level now");
+        // TransitionLevel(0, 1);
+        // yield return StartCoroutine(FadeManager.Instance.BrightUp());
         playerHandler.StartPlayerMovement();
 
+    }
+
+    public void DoLevelTransition(int currentLevel, int newLevel, bool isReload = false)
+    {
+        StartCoroutine(StartLevelTransition(currentLevel, newLevel, isReload));
+    }
+
+    public IEnumerator StartLevelTransition(int currentLevel, int newLevel, bool isReload = false)
+    {
+        if (!isReload)
+        {
+            yield return StartCoroutine(DoGrayScale());
+        }
+        Debug.Log("Load level now");
+        TransitionLevel(0, 1, isReload);
+
+        if (!isReload)
+        {
+            yield return StartCoroutine(FadeManager.Instance.BrightUp());
+        }
     }
 
     public void TransitionLevel(int currentLevel, int newLevel, bool isReloadingLevel = false)
@@ -57,9 +79,12 @@ public class GameView : MonoBehaviour
         CustomGameManager.Instance.currentLevel = newLevel;
         SetButtonsStatus();
 
+        CustomGameManager.Instance.playerHasKey = false;
+
         if (newLevel != 0)
         {
             reloadButton.interactable = true;
+            levelKeys[newLevel - 1].SetActive(true);
         }
         else if (newLevel == 0)
         {
@@ -68,7 +93,6 @@ public class GameView : MonoBehaviour
 
         if (!isReloadingLevel && newLevel != 0)
         {
-            CustomGameManager.Instance.playerHasKey = false;
             Invoke("PlayGhostAnim", 1f);
         }
 
@@ -79,7 +103,7 @@ public class GameView : MonoBehaviour
         int currentLevel = CustomGameManager.Instance.currentLevel;
         if (currentLevel != 0)
         {
-            TransitionLevel(CustomGameManager.Instance.currentLevel, CustomGameManager.Instance.currentLevel, true);
+            DoLevelTransition(CustomGameManager.Instance.currentLevel, CustomGameManager.Instance.currentLevel, true);
         }
     }
 
