@@ -13,7 +13,7 @@ public class CustomGameManager : MonoBehaviour
 {
     public static CustomGameManager Instance;
     public GameState currentGameState = GameState.INTRO;
-    public int currentLevel;
+    public int currentLevel = 0;
     public bool isFTUE = true;
 
     void Awake()
