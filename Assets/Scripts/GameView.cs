@@ -86,12 +86,12 @@ public class GameView : MonoBehaviour
 
         CustomGameManager.Instance.playerHasKey = false;
 
-        if (newLevel != 0)
+        if (newLevel != 0 && newLevel != 4)
         {
             reloadButton.interactable = true;
             levelKeys[newLevel - 1].SetActive(true);
         }
-        else if (newLevel == 0)
+        else if (newLevel == 0 && newLevel == 4)
         {
             reloadButton.interactable = false;
         }
