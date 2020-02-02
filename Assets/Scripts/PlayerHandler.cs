@@ -47,7 +47,7 @@ public class PlayerHandler : MonoBehaviour
 
     void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.15f, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.45f, groundLayer);
         if (isGrounded)
         {
             Move();
