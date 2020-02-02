@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71cd15318aad34f4ba353041ae0ba28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform: {fileID: 5653188384691665667}
+  platform: {fileID: 5653188384691665668}
   startTransform: {fileID: 5653188384512531358}
   moveSpeed: 1
   moveRange: 3.2

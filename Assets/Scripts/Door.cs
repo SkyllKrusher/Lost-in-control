@@ -24,6 +24,7 @@ public class Door : MonoBehaviour
 
     private void OpenDoor()
     {
-        gameView.TransitionLevel(1, 2);
+        int currentLevel = CustomGameManager.Instance.currentLevel;
+        gameView.TransitionLevel(currentLevel, currentLevel + 1);
     }
 }
