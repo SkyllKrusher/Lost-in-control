@@ -23,23 +23,29 @@ public class FadeManager : MonoBehaviour
 
     public IEnumerator BlackOut()
     {
+        Debug.LogWarning("BlackOut");
         float colourValue = 1f;
         float rate = 0.01f;
         while (myCanvasGroup.alpha < colourValue)
         {
             myCanvasGroup.alpha += rate;
             yield return new WaitForEndOfFrame();
+            // Debug.LogWarning("Blackout CANVAS ALPHA = " + myCanvasGroup.alpha);
         }
+        Debug.LogWarning("BlackOut over");
     }
 
     public IEnumerator BrightUp()
     {
+        Debug.LogWarning("BrightUp");
         float colourValue = 0f;
         float rate = 0.01f;
         while (myCanvasGroup.alpha > colourValue)
         {
             myCanvasGroup.alpha -= rate;
             yield return new WaitForEndOfFrame();
+            // Debug.LogWarning("BrightUp CANVAS ALPHA = " + myCanvasGroup.alpha);
         }
+        Debug.LogWarning("BrightUp over");
     }
 }

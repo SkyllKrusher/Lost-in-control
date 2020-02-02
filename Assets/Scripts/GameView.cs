@@ -25,6 +25,7 @@ public class GameView : MonoBehaviour
     {
         grayscaleMat.SetFloat("_EffectAmount", 0);
         TransitionLevel(1, 0);
+        AudioManager.Instance.PlayBgMusic1();
     }
 
     public void StopControlAnimation()
@@ -39,11 +40,15 @@ public class GameView : MonoBehaviour
         yield return new WaitForSeconds(2);
         DoCamerashake();
         yield return new WaitForSeconds(4);
+        AudioManager.Instance.PlayBgMusic2();
         DoLevelTransition(0, 1);
         playerHandler.StartPlayerMovement();
 
     }
 
+    int currentLevel;
+    int newLevel;
+    bool isReload = false;
     public void DoLevelTransition(int currentLevel, int newLevel, bool isReload = false)
     {
         Debug.Log("Starting level trans effect = " + currentLevel + " " + newLevel + " " + isReload);
@@ -62,7 +67,7 @@ public class GameView : MonoBehaviour
 
         if (!isReload)
         {
-            yield return StartCoroutine(FadeManager.Instance.BrightUp());
+            StartCoroutine(FadeManager.Instance.BrightUp());
         }
     }
 
@@ -70,7 +75,7 @@ public class GameView : MonoBehaviour
     {
         playerHandler.gameObject.transform.parent = null;
 
-        Debug.LogError("Current level " + currentLevel + "New Level " + newLevel);
+        Debug.Log("Current level " + currentLevel + "New Level " + newLevel);
         SetPlayerStartingPos(newLevel);
         playerHandler.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         levels[currentLevel].SetActive(false);
