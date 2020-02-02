@@ -10,12 +10,12 @@ public class GameView : MonoBehaviour
     [SerializeField] private Material grayscaleMat;
 
     [SerializeField] private GameObject[] levels;
+    [SerializeField] private List<Transform> levelStartingPositions;
 
     private void Start()
     {
         grayscaleMat.SetFloat("_EffectAmount", 0);
-        levels[0].SetActive(true);
-        levels[1].SetActive(false);
+        TransitionLevel(1, 0);
     }
 
     public void StopControlAnimation()
@@ -32,12 +32,24 @@ public class GameView : MonoBehaviour
         yield return new WaitForSeconds(4);
         yield return StartCoroutine(DoGrayScale());
         Debug.Log("Load level now");
-        levels[0].SetActive(false);
-        levels[1].SetActive(true);
-        CustomGameManager.Instance.currentLevel += 1;
+        TransitionLevel(0, 1);
         yield return StartCoroutine(FadeManager.Instance.BrightUp());
         playerHandler.StartPlayerMovement();
 
+    }
+
+    private void TransitionLevel(int currentLevel, int newLevel)
+    {
+        Debug.LogError("Current level " + currentLevel + "New Level " + newLevel);
+        SetPlayerStartingPos(newLevel);
+        levels[currentLevel].SetActive(false);
+        levels[newLevel].SetActive(true);
+        CustomGameManager.Instance.currentLevel = newLevel;
+    }
+
+    private void SetPlayerStartingPos(int levelID)
+    {
+        playerHandler.gameObject.transform.position = levelStartingPositions[levelID].position;
     }
 
     public void DoCamerashake()
