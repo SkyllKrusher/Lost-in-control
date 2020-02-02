@@ -2841,6 +2841,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e3b238e7191e5b349b1be60d6a447710, type: 3}
   - {fileID: 8300000, guid: fe64f4385308ea745bdb11c11edc4a62, type: 3}
   - {fileID: 8300000, guid: 82160281125abf04daec121fdfa2a68c, type: 3}
+  bgMusic:
+  - {fileID: 8300000, guid: d0735a0725bb0b84eb8be3d1bf9c5418, type: 3}
+  - {fileID: 8300000, guid: 246bf71e85f862d4f95a16b551fb4f2e, type: 3}
   BgMusic: {fileID: 1582000833}
 --- !u!4 &1582000835
 Transform:
@@ -3410,6 +3413,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c302fa664a8a254ba49c0004485b0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Buttons:
+  - {fileID: 1224939852}
+  - {fileID: 23682627}
+  - {fileID: 975597281}
+  btn: {fileID: 21300000, guid: 799d99fc4a0475845b5b6000993aeeca, type: 3}
+  btnDestroy: {fileID: 21300000, guid: 9d0c7f5a96cdfea489896378d701feea, type: 3}
   isLeftBroken: 0
   isRightBroken: 0
   isJumpBroken: 0

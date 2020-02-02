@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     public AudioClip[] soundClips;
+    public AudioClip[] bgMusic;
     public AudioSource BgMusic;
     void Awake()
     {
@@ -22,16 +23,15 @@ public class AudioManager : MonoBehaviour
 
         //  BgMusic.Play();
     }
-    public void PlayBgMusic()
+    public void PlayBgMusic1()
     {
+        BgMusic.clip = bgMusic[0];
+        BgMusic.Play();
+    }
+    public void PlayBgMusic2()
+    {
+        BgMusic.clip = bgMusic[1];
+        BgMusic.Play();
     }
 
-    public void PlayerEnterJump()
-    {
-
-    }
-    public void PlayerExitJump()
-    {
-
-    }
 }

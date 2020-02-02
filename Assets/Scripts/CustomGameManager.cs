@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,6 +12,9 @@ public enum GameState
 
 public class CustomGameManager : MonoBehaviour
 {
+    public GameObject[] Buttons;
+    public Sprite btn;
+    public Sprite btnDestroy;
     public bool isLeftBroken = false;
     public bool isRightBroken = false;
     public bool isJumpBroken = false;
@@ -28,5 +32,16 @@ public class CustomGameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(this);
+    }
+    public void ChangeButtonSprite(bool doDestroy, int btnIndex)
+    {
+        if (doDestroy)
+        {
+            Buttons[btnIndex].GetComponent<Image>().sprite = btnDestroy;
+        }
+        else
+        {
+            Buttons[btnIndex].GetComponent<Image>().sprite = btn;
+        }
     }
 }
