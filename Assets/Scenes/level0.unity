@@ -2449,6 +2449,7 @@ MonoBehaviour:
   playerControl: {fileID: 1355218833}
   girlIntroAnimationControl: {fileID: 2067061837}
   grayscaleMat: {fileID: 2100000, guid: b6b7fd469e0eeb54387bea65e31976a5, type: 2}
+  thankYouPanel: {fileID: 0}
   levels:
   - {fileID: 1169259559}
   - {fileID: 1540674079}
@@ -4018,6 +4019,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Level4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5535089369486268282, guid: cfe693d0c15500540a75789a1aa17925,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfe693d0c15500540a75789a1aa17925, type: 3}
