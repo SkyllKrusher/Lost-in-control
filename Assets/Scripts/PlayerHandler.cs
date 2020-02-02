@@ -32,6 +32,19 @@ public class PlayerHandler : MonoBehaviour
         //StartPlayerBounce();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.LogError("Resetting Level!");
+            int currentLevel = CustomGameManager.Instance.currentLevel;
+            if (currentLevel != 0)
+            {
+                gameView.TransitionLevel(CustomGameManager.Instance.currentLevel, CustomGameManager.Instance.currentLevel);
+            }
+        }
+    }
+
     void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.15f, groundLayer);
@@ -161,6 +174,7 @@ public class PlayerHandler : MonoBehaviour
         Debug.LogError("Player bounce complete!");
         playerProjectile.SetActive(false);
         this.gameObject.transform.position = endPosition;
+        playerProjectile.transform.parent = transform;
         this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
 

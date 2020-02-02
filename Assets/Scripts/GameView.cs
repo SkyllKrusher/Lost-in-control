@@ -32,7 +32,7 @@ public class GameView : MonoBehaviour
         yield return new WaitForSeconds(4);
         yield return StartCoroutine(DoGrayScale());
         Debug.Log("Load level now");
-        TransitionLevel(0, 1);
+        TransitionLevel(0, 2);
         yield return StartCoroutine(FadeManager.Instance.BrightUp());
         playerHandler.StartPlayerMovement();
 
@@ -40,6 +40,7 @@ public class GameView : MonoBehaviour
 
     public void TransitionLevel(int currentLevel, int newLevel)
     {
+        playerHandler.gameObject.transform.parent = null;
         CustomGameManager.Instance.playerHasKey = false;
         Debug.LogError("Current level " + currentLevel + "New Level " + newLevel);
         SetPlayerStartingPos(newLevel);
