@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 445555804}
   m_Layer: 0
   m_Name: Player_Boy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,7 @@ Transform:
   m_GameObject: {fileID: 9191508282657766991}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.68, y: -3.53, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 9191508284215075522}
   - {fileID: 9191508284213821350}
@@ -172,7 +172,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: a44e8480b5f9ee040931b9d011347cae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameView: {fileID: 0}
   playerSpeed: 5
-  playerJumpForce: 100
+  playerJumpForce: 120
   playerJumpAngle: {fileID: 9191508284213821350}
   groundCheck: {fileID: 9191508284215075522}
   angle: {fileID: 9191508284213821350}
@@ -259,7 +259,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.20475578, y: 1.3889637}
+  m_Offset: {x: -0.066206574, y: 1.198565}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.22, y: 0.26}
@@ -270,7 +270,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.7300682, y: 4.408437}
+  m_Size: {x: 2.0649784, y: 3.9517174}
   m_EdgeRadius: 0
 --- !u!82 &445555804
 AudioSource:
