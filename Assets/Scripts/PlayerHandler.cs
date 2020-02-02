@@ -73,7 +73,7 @@ public class PlayerHandler : MonoBehaviour
 
     public void MoveLeft()
     {
-        if (canPlayerMove)
+        if (canPlayerMove && !CustomGameManager.Instance.isLeftBroken)
         {
             CheckFTUE();
 
@@ -89,7 +89,7 @@ public class PlayerHandler : MonoBehaviour
 
     public void MoveRight()
     {
-        if (canPlayerMove)
+        if (canPlayerMove && !CustomGameManager.Instance.isRightBroken)
         {
             CheckFTUE();
 
@@ -112,7 +112,7 @@ public class PlayerHandler : MonoBehaviour
         {
             CheckFTUE();
 
-            if (isGrounded)
+            if (isGrounded && !CustomGameManager.Instance.isJumpBroken)
             {
                 isGrounded = false;
                 PlaySoundEffect(1);

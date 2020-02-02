@@ -11,6 +11,9 @@ public enum GameState
 
 public class CustomGameManager : MonoBehaviour
 {
+    public bool isLeftBroken = false;
+    public bool isRightBroken = false;
+    public bool isJumpBroken = false;
     public static CustomGameManager Instance;
     public GameState currentGameState = GameState.INTRO;
     public int currentLevel = 0;
