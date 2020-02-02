@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
+    [SerializeField] private GameView gameView;
     private void OnTriggerEnter2D(Collider2D other)
     {
         HandleTriggerEnter(other);
@@ -25,6 +20,13 @@ public class Key : MonoBehaviour
 
     private void CollectKey()
     {
-        //manager has key bool = true;
+        Debug.Log("Collecting Keys");
+        CustomGameManager.Instance.playerHasKey = true;
+        DisableKey();
+    }
+
+    private void DisableKey()
+    {
+        gameObject.SetActive(false);
     }
 }

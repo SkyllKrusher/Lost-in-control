@@ -38,8 +38,9 @@ public class GameView : MonoBehaviour
 
     }
 
-    private void TransitionLevel(int currentLevel, int newLevel)
+    public void TransitionLevel(int currentLevel, int newLevel)
     {
+        CustomGameManager.Instance.playerHasKey = false;
         Debug.LogError("Current level " + currentLevel + "New Level " + newLevel);
         SetPlayerStartingPos(newLevel);
         levels[currentLevel].SetActive(false);

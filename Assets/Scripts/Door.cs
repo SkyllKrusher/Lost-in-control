@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    private bool hasKey;
-
-    private void Start()
-    {
-        //has key = manager value
-    }
+    [SerializeField] private GameView gameView;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -20,7 +15,7 @@ public class Door : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (hasKey == true)
+            if (CustomGameManager.Instance.playerHasKey == true)
             {
                 OpenDoor();
             }
@@ -29,6 +24,6 @@ public class Door : MonoBehaviour
 
     private void OpenDoor()
     {
-        //manager next scene
+        gameView.TransitionLevel(1, 2);
     }
 }
