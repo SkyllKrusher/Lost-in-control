@@ -149,8 +149,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -52.4, y: 58.3}
-  m_SizeDelta: {x: 83.9, y: 86.751}
+  m_AnchoredPosition: {x: -1606, y: 93}
+  m_SizeDelta: {x: 156.7, y: 146.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &23682629
 MonoBehaviour:
@@ -212,7 +212,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 799d99fc4a0475845b5b6000993aeeca, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2105,7 +2105,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 38.866776, y: 12.694153}
+  m_Size: {x: 56.695686, y: 12.694153}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
@@ -2119,7 +2119,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656840376}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.049, y: -1.066, z: 0}
+  m_LocalPosition: {x: -0.377, y: -1.066, z: 0}
   m_LocalScale: {x: 0.49366963, y: 0.81156516, z: 1}
   m_Children: []
   m_Father: {fileID: 1169259560}
@@ -2517,8 +2517,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -137.2, y: 138.3}
-  m_SizeDelta: {x: 83.9, y: 86.992}
+  m_AnchoredPosition: {x: -207, y: 97}
+  m_SizeDelta: {x: 156.7, y: 146.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &975597283
 MonoBehaviour:
@@ -2591,7 +2591,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 799d99fc4a0475845b5b6000993aeeca, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2776,8 +2776,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -221.9, y: 58.4}
-  m_SizeDelta: {x: 84.51, y: 86.74}
+  m_AnchoredPosition: {x: -1793.6, y: 91}
+  m_SizeDelta: {x: 156.7, y: 146.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1224939854
 MonoBehaviour:
@@ -2883,7 +2883,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 799d99fc4a0475845b5b6000993aeeca, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -3023,8 +3023,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -333.2002, y: 107.200195}
-  m_SizeDelta: {x: 282.90002, y: 214.4}
+  m_AnchoredPosition: {x: -960, y: 107.200195}
+  m_SizeDelta: {x: 1920, y: 214.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1355218833
 Animator:
@@ -3379,11 +3379,41 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4509496185015961824, guid: 9afe56a58bcb60e498ab2003a353adf7,
+        type: 3}
+      propertyPath: disappearDelayTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6963256710366344674, guid: 9afe56a58bcb60e498ab2003a353adf7,
         type: 3}
       propertyPath: gameView
       value: 
       objectReference: {fileID: 842766229}
+    - target: {fileID: 7416046260889106604, guid: 9afe56a58bcb60e498ab2003a353adf7,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.00000029802322
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416046260889106604, guid: 9afe56a58bcb60e498ab2003a353adf7,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.529189
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416046260889106604, guid: 9afe56a58bcb60e498ab2003a353adf7,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.028945923
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416046260889106604, guid: 9afe56a58bcb60e498ab2003a353adf7,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.7801139
+      objectReference: {fileID: 0}
+    - target: {fileID: 9146693330973248404, guid: 9afe56a58bcb60e498ab2003a353adf7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.809
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9afe56a58bcb60e498ab2003a353adf7, type: 3}
 --- !u!4 &1628771844 stripped
