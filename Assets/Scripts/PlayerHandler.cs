@@ -40,7 +40,7 @@ public class PlayerHandler : MonoBehaviour
             int currentLevel = CustomGameManager.Instance.currentLevel;
             if (currentLevel != 0)
             {
-                gameView.TransitionLevel(CustomGameManager.Instance.currentLevel, CustomGameManager.Instance.currentLevel);
+                gameView.TransitionLevel(CustomGameManager.Instance.currentLevel, CustomGameManager.Instance.currentLevel, true);
             }
         }
     }

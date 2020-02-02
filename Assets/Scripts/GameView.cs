@@ -11,6 +11,7 @@ public class GameView : MonoBehaviour
 
     [SerializeField] private GameObject[] levels;
     [SerializeField] private List<Transform> levelStartingPositions;
+    [SerializeField] private GameObject ghostGirl;
 
     private void Start()
     {
@@ -38,7 +39,7 @@ public class GameView : MonoBehaviour
 
     }
 
-    public void TransitionLevel(int currentLevel, int newLevel)
+    public void TransitionLevel(int currentLevel, int newLevel, bool isReloadingLevel = false)
     {
         playerHandler.gameObject.transform.parent = null;
         CustomGameManager.Instance.playerHasKey = false;
@@ -47,6 +48,17 @@ public class GameView : MonoBehaviour
         levels[currentLevel].SetActive(false);
         levels[newLevel].SetActive(true);
         CustomGameManager.Instance.currentLevel = newLevel;
+
+        if (!isReloadingLevel && newLevel != 0)
+        {
+            Invoke("PlayGhostAnim", 1f);
+        }
+    }
+
+    private void PlayGhostAnim()
+    {
+        Debug.LogError("Playing ghost girl anim.");
+        ghostGirl.GetComponent<Animator>().SetTrigger("Level" + CustomGameManager.Instance.currentLevel.ToString());
     }
 
     private void SetPlayerStartingPos(int levelID)
