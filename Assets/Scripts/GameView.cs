@@ -96,11 +96,15 @@ public class GameView : MonoBehaviour
             reloadButton.interactable = false;
         }
 
+        if (newLevel == 4)
+        {
+            playerHandler.canPlayerMove = false;
+        }
+
         if (!isReloadingLevel && newLevel != 0)
         {
             Invoke("PlayGhostAnim", 1f);
         }
-
     }
 
     public void ReloadLevel()

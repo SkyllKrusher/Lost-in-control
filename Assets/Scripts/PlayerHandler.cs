@@ -21,7 +21,7 @@ public class PlayerHandler : MonoBehaviour
     private Vector3 direction;
     private bool firstControlHit = false;
 
-    private bool canPlayerMove = true;
+    public bool canPlayerMove = true;
 
     void Start()
     {
