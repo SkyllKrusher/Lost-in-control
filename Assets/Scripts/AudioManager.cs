@@ -37,12 +37,12 @@ public class AudioManager : MonoBehaviour
 
     public void PlayEarthQuakeSound()
     {
-        soundEffects.clip = bgMusic[3];
+        soundEffects.clip = soundClips[3];
         soundEffects.Play();
     }
     public void PlayButtonRecoverSound()
     {
-        soundEffects.clip = bgMusic[4];
+        soundEffects.clip = soundClips[4];
         soundEffects.Play();
     }
 

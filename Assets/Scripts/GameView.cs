@@ -38,6 +38,7 @@ public class GameView : MonoBehaviour
         yield return new WaitForSeconds(2);
         girlIntroAnimationControl.Play("girlfall_intro");
         yield return new WaitForSeconds(2);
+        AudioManager.Instance.PlayEarthQuakeSound();
         DoCamerashake();
         yield return new WaitForSeconds(4);
         AudioManager.Instance.PlayBgMusic2();
