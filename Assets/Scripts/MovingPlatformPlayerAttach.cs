@@ -19,7 +19,7 @@ public class MovingPlatformPlayerAttach : MonoBehaviour
 
     private void DetachPlayerFromPlatform(GameObject player)
     {
-        player.transform.SetParent(levelTransform);
+        player.transform.parent = null;
     }
 
     private void HandleTriggerEnter(Collider2D other)

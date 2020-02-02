@@ -2395,7 +2395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1169259560
 Transform:
   m_ObjectHideFlags: 0
@@ -3248,7 +3248,7 @@ PrefabInstance:
     - target: {fileID: 245888291880447161, guid: ca48428c5384d0948b64b463063736e1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 245888292277589644, guid: ca48428c5384d0948b64b463063736e1,
         type: 3}
@@ -3410,6 +3410,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c302fa664a8a254ba49c0004485b0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLeftBroken: 0
+  isRightBroken: 0
+  isJumpBroken: 0
   currentGameState: 0
   currentLevel: 0
   isFTUE: 0
