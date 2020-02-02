@@ -40,16 +40,13 @@ public class GameView : MonoBehaviour
         DoCamerashake();
         yield return new WaitForSeconds(4);
         DoLevelTransition(0, 1);
-        // yield return StartCoroutine(DoGrayScale());
-        // Debug.Log("Load level now");
-        // TransitionLevel(0, 1);
-        // yield return StartCoroutine(FadeManager.Instance.BrightUp());
         playerHandler.StartPlayerMovement();
 
     }
 
     public void DoLevelTransition(int currentLevel, int newLevel, bool isReload = false)
     {
+        Debug.Log("Starting level trans effect = " + currentLevel + " " + newLevel + " " + isReload);
         StartCoroutine(StartLevelTransition(currentLevel, newLevel, isReload));
     }
 
@@ -57,13 +54,17 @@ public class GameView : MonoBehaviour
     {
         if (!isReload)
         {
+            Debug.Log("GRayscaling...");
             yield return StartCoroutine(DoGrayScale());
         }
+
         Debug.Log("Load level now");
-        TransitionLevel(0, 1, isReload);
+        Debug.Log("Old level = " + currentLevel + "New = " + newLevel);
+        TransitionLevel(currentLevel, newLevel, isReload);
 
         if (!isReload)
         {
+            Debug.Log("Brighting up screen");
             yield return StartCoroutine(FadeManager.Instance.BrightUp());
         }
     }
